@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.example.lovecalculator.FirstFragment"
+        android:name="com.example.lovecalculator.ui.FirstFragment"
         tools:layout="@layout/fragment_first"
         android:label="FirstFragment" />
 
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.example.lovecalculator.ResultFragment"
+        android:name="com.example.lovecalculator.ui.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" />
 </navigation>
