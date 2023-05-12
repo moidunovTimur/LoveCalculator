@@ -10,5 +10,3 @@ data class LoveModel(
     var percentage:String,
     var result:String
 ):java.io.Serializable
-
-//good
