@@ -12,20 +12,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.lovecalculator.R
 import com.example.lovecalculator.databinding.FragmentFirstBinding
 import com.example.lovecalculator.LoveViewModel
-import com.example.lovecalculator.Utils
-import dagger.Provides
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@AndroidEntryPoint
 class FirstFragment : Fragment() {
 
     private lateinit var binding: FragmentFirstBinding
     val viewModel: LoveViewModel by viewModels()
-
-    @Inject
-    lateinit var utils: Utils
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,13 +34,11 @@ class FirstFragment : Fragment() {
     private fun initClickers() {
         with(binding) {
             calculateBtn.setOnClickListener {
-               viewModel.liveLove(firstNameED.text.toString(), secondNameED.text.toString())
-                   .observe(viewLifecycleOwner) { LoveModel ->
-                      Log.e("ololo", "initClickers:${LoveModel}")
+                viewModel.liveLove(firstNameED.text.toString(), secondNameED.text.toString())
+                    .observe(viewLifecycleOwner) { LoveModel ->
+                        Log.e("ololo", "initClickers:${LoveModel}")
                         findNavController().navigate(R.id.resultFragment, bundleOf("key" to LoveModel))
                     }
-
-                utils.showToast(requireContext())
             }
         }
     }
