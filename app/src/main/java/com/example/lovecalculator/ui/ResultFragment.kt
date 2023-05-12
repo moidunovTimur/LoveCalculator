@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.lovecalculator.databinding.FragmentResultBinding
 import com.example.lovecalculator.remote.LoveModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResultFragment : Fragment() {
 
     private lateinit var binding: FragmentResultBinding

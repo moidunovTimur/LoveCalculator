@@ -3,8 +3,10 @@ package com.example.lovecalculator.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.lovecalculator.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 // LoveCalculator
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
