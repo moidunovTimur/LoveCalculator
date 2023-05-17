@@ -8,9 +8,12 @@
     <fragment
         android:id="@+id/firstFragment"
         android:name="com.example.lovecalculator.ui.FirstFragment"
-        tools:layout="@layout/fragment_first"
-        android:label="FirstFragment" />
-
+        android:label="FirstFragment"
+        />
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.example.lovecalculator.onBoarding.OnBoardingFragment"
+        android:label="OnBoardingFragment" />
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.lovecalculator.ui.ResultFragment"

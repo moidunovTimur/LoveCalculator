@@ -8,19 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.lovecalculator.LoveViewModel
 import com.example.lovecalculator.R
 import com.example.lovecalculator.databinding.FragmentFirstBinding
-import com.example.lovecalculator.LoveViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FirstFragment : Fragment() {
 
     private lateinit var binding: FragmentFirstBinding
-    val viewModel: LoveViewModel by viewModels()
+    private val viewModel: LoveViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
@@ -28,17 +32,24 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initClickers()
+        initListener()
     }
 
-    private fun initClickers() {
+    private fun initListener() {
         with(binding) {
             calculateBtn.setOnClickListener {
-                viewModel.liveLove(firstNameED.text.toString(), secondNameED.text.toString())
-                    .observe(viewLifecycleOwner) { LoveModel ->
-                        Log.e("ololo", "initClickers:${LoveModel}")
-                        findNavController().navigate(R.id.resultFragment, bundleOf("key" to LoveModel))
-                    }
+                viewModel.getLiveLove(
+                    firstName = firstNameED.text.toString(),
+                    secondName = secondNameED.text.toString()
+                ).observe(viewLifecycleOwner,
+                    Observer {
+                        Log.e("ololo", "initListener: $it" )
+                        findNavController().navigate(
+                            R.id.resultFragment, bundleOf(
+                                "model" to it
+                            )
+                        )
+                    })
             }
         }
     }
